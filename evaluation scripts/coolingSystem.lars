@@ -1,0 +1,9 @@
+steam(V) at T :- temp(V) at T in [3 sec], V >= 100.
+liquid(V) at T :- steam(V) at T [3 sec], V >= 1, V < 100.
+isSteam at T :- steam(V) at T [3 sec].
+isLiquid at T :- liquid(V) at T [3 sec].
+alarm :- isSteam always [3 sec].
+normal :- isLiquid always [3 sec].
+veryHot(T) :-  steam(V) at T [3 sec], V >= 150.
+veryCold(T) :- liquid(V) at T [3 sec], V = 1.
+freeze :- not alarm, not normal.

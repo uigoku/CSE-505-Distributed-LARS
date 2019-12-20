@@ -1,0 +1,6 @@
+// simplified version without future inferences
+expBusM :- busG at T in [3 min], on.
+expTrM :- tramB at T in [5 min], on.
+on :- request in [1 min].
+takeBusM :- expBusM in [5 min], not takeTrM, not jam in [3 min].
+takeTrM :- expTrM in [5 min], not takeBusM.

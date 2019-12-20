@@ -1,0 +1,12 @@
+resolver: lts-13.6
+packages:
+- .
+extra-deps:
+- git: https://github.com/tsahyt/clingo-haskell.git
+  commit: b242642db0d65d36430ccf0c58f27f4f23a5d05f
+- fgl-visualize-0.1.0.1
+- dotgen-0.4.2
+- selda-0.3.4.0
+- selda-sqlite-0.1.6.1
+- singleton-typelits-0.1.0.0
+- multiplate-0.0.3

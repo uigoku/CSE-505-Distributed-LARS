@@ -1,0 +1,15 @@
+need(I,N) :- item(I), node(N), req(I,N) in [2 s].
+avail(I,N) :- item(I), node(N), cache(I,N) in [2 s].
+
+get(I,N,M) :- source(I,N,M), not nGet(I,N,M).
+
+nGet(I,N,M) :- node(M), get(I,N,M'), M != M'.
+nGet(I,N,M) :- source(I,N,M), source(I,N,M'), M != M', qual(M,L), qual(M',L'), L < L'.
+
+source(I,N,M) :- need(I,N), not avail(I,N), avail(I,M), reach(N,M).
+
+reach(N,M) :- conn(N,M).
+reach(N,M) :- reach(N,M'), conn(M',M), M' != M, N != M.
+
+conn(N,M) :- edge(N,M), not down(M) always [2 s].
+qual(N,L) :- node(N), lev(L), lev(L'), L' < L, qLev(N,L) in [2 s], not qLev(N,L') in [2 s].

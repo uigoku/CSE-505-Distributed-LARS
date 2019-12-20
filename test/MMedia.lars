@@ -1,0 +1,19 @@
+high :- value(V), alpha(V) [3 sec], 18 <= V.
+mid :- value(V), alpha(V) [3 sec], 12 <= V, V < 18.
+low :- value(V), alpha(V) [3 sec], V <= 12.
+lfu :- high always [3 sec].
+lru :- mid always [3 sec].
+fifo :- low always [3 sec], rtm50 [3 sec].
+done :- lfu.
+done :- lru.
+done :- fifo.
+random :- not done.
+value(5). value(15). value(25).
+finish :- off [1 sec], done.
+finish :- off [1 sec], random.
+// 
+// #show lfu/0.
+// #show lru/0.
+// #show fifo/0.
+// #show random/0.
+// #show finish/0.

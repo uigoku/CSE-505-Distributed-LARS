@@ -1,0 +1,13 @@
+high at T :- value(V), alpha(V) at T [300 #], 18 <= V.
+mid at T :- value(V), alpha(V) at T [300 #], 12 <= V, V < 18.
+low at T :- value(V), alpha(V) at T [300 #], V <= 12.
+lfu :- high always [300 #].
+lru :- mid always [300 #].
+fifo :- low always [300 #], rtm50 [300 #].
+done :- lfu.
+done :- lru.
+done :- fifo.
+random :- not done.
+value(5).
+value(15).
+value(25).
